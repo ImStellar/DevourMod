@@ -1,8 +1,6 @@
 ﻿using MelonLoader;
 using Opsive.UltimateCharacterController.Character;
 using Photon.Bolt;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -10,40 +8,6 @@ namespace DevourMod
 {
     public class DevourMain : MelonMod
     {
-        public static Camera Cam;
-        public static int logcounter = 0;
-        public static bool flying = false;
-        public static bool lobbyfly = false;
-        public static int hiii = 1;
-        public static bool WorldCrasher = false;
-        public static bool something = false;
-        private GameObject player;
-        public static int num1 = 1;
-        public static float Delay2 = 0f;
-        public static bool spinbot = false;
-        public static bool pingloopend = false;
-        public static bool pingloopstart = false;
-        public static bool rankspoof = false;
-        public static float Delay1 = 0f;
-        public static bool gamelagger = false;
-        public static bool isinworld = false;
-        public static bool freefall = false;
-        public static bool unlockach = false;
-        public static float flySpeed = 5;
-        public static float testspeed = 1;
-        private static GameObject LocalPlayerCached;
-        public static GameObject LocalPlayer => LocalPlayerCached ??= FindObject<PlayerCharacterBehaviour>().gameObject;
-        public static List<SurvivalDemonBehaviour> Demons = new List<SurvivalDemonBehaviour>();
-        public static List<GoatBehaviour> Goats = new List<GoatBehaviour>();
-        public static List<SurvivalEggInteractable> Eggs = new List<SurvivalEggInteractable>();
-        public static List<SurvivalInteractable> Items = new List<SurvivalInteractable>();
-        public static List<KeyBehaviour> Keys = new List<KeyBehaviour>();
-        public static List<CollectableInteractable> Collectibles = new List<CollectableInteractable>();
-        public static SurvivalAzazelBehaviour Azazel;
-        public static GameObject Ritual;
-        public static Vector3 cachedposition;
-
-
         private void GUI()
         {
             DevourForm form = new DevourForm();
@@ -88,16 +52,6 @@ namespace DevourMod
         {
             try
             {
-                //Delay1 += Time.deltaTime;
-                //if (Delay1 > 1f)
-                //{
-                //    foreach (GoatBehaviour goat in Resources.FindObjectsOfTypeAll<GoatBehaviour>())
-                //    {
-                //        Goats.Add(goat);
-                //    }
-                //    MelonLogger.Msg(Goats.Count);
-                //    Delay1 = 0f;
-                //}
                 if (rankspoof)
                 {
                     foreach (NolanRankController rank in Resources.FindObjectsOfTypeAll<NolanRankController>())
@@ -196,7 +150,6 @@ namespace DevourMod
                                     collide.enabled = false;
                                 }
                             }
-                            player = LocalPlayer.gameObject;
                             flying = true;
                         }
                     }
@@ -213,17 +166,27 @@ namespace DevourMod
                     }
                     if (Input.GetKey(KeyCode.E))
                     {
-                        LocalPlayer.GetComponent<UltimateCharacterLocomotion>().SetPosition(player.transform.position += Vector3.up * number * Time.deltaTime);
+                        LocalPlayer.GetComponent<UltimateCharacterLocomotion>().SetPosition(LocalPlayer.gameObject.transform.position += Vector3.up * number * Time.deltaTime);
                     }
                     if (Input.GetKey(KeyCode.Q))
                     {
-                        LocalPlayer.GetComponent<UltimateCharacterLocomotion>().SetPosition(player.transform.position -= Vector3.up * number * Time.deltaTime);
+                        LocalPlayer.GetComponent<UltimateCharacterLocomotion>().SetPosition(LocalPlayer.gameObject.transform.position -= Vector3.up * number * Time.deltaTime);
                     }
                 }
             }
             catch { }
         }
 
-        
+        public static bool flying;
+        public static int num1 = 1;
+        public static bool spinbot;
+        public static bool pingloopend;
+        public static bool pingloopstart;
+        public static bool rankspoof;
+        public static bool isinworld;
+        public static bool freefall;
+        public static float flySpeed = 5;
+        private static GameObject LocalPlayerCached;
+        public static GameObject LocalPlayer => LocalPlayerCached ??= FindObject<PlayerCharacterBehaviour>().gameObject;
     }
 }

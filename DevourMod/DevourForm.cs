@@ -124,7 +124,6 @@ namespace DevourMod
                 }
             }
             catch { }
-            
         }
     }
 }
