@@ -6,7 +6,7 @@ Hi I got bored and decided to mod this random horror game called Devour, I might
 
 Download and install melonloader https://melonwiki.xyz/#/ then put my mod in the Mods folder, once you loaded my mod my UI will pop up to access it you have to unfullscreen your game and then hold tab and move your mouse to it.
 
-# Hotkeys
+# Hotkeys / Features
 
 Press B: Toggles Fly On/OFF
 Press Number 4: Respawns you
